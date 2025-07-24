@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/Contact');
+const Contact = require('../models/contact');
+
 
 //Home
 router.get('/', async (req, res) => {
     const contacts = await Contact.find();
-    res.render('index', { contacts });
+    // res.render('index', { contacts });
+    res.render('index', { contacts, 'text': "" });
 });
 
 //Add Contact form API
