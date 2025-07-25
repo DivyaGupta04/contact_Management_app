@@ -17,11 +17,15 @@ router.get('/add', (req, res) => res.render('add'));
 router.post('/add', async (req, res) => {
     try {
         const { FirstName, LastName, Address, Email, Phone } = req.body;
+
+        console.log("Recieved data", req.body);
+
         const newContact = new Contact({ FirstName, LastName, Address, Email, Phone });
         await newContact.save();
         res.redirect('/');
     } catch (error) {
-        res.send('Error');
+        console.error('Error saving contact:', error);
+        res.status(500).send('Error saving contact' + error.message);
     }
 });
 

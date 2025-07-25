@@ -7,7 +7,7 @@ const Contact = require('./models/contact');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://DIVYA:divya@meradb.z2dszqk.mongodb.net/contact_db', {
+mongoose.connect('mongodb+srv://DIVYA:divya@meradb.z2dszqk.mongodb.net/Contact_DB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
@@ -19,6 +19,7 @@ mongoose.connect('mongodb+srv://DIVYA:divya@meradb.z2dszqk.mongodb.net/contact_d
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
