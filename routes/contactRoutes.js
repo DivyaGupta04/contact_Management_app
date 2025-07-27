@@ -31,20 +31,41 @@ router.post('/add', async (req, res) => {
 
 //Edit form API
 router.get('/edit/:id', async (req, res) => {
+    try {
     const contact = await Contact.findById(req.params.id);
     res.render('edit', { contact });
+    } catch (error) {
+        res.status(500).send('Error retrieving contact for edit: ');
+    }
 });
 
 //Update Contact API
-router.put('/edit/:id', async (req, res) => {
-    await Contact.findByIdAndUpdate(req.params.id, req.body);
-    res.redirect('/');
+router.post('/edit/:id', async (req, res) => {
+    const { FirstName, LastName, Address, Email, Phone } = req.body;
+    try {
+        await Contact.findByIdAndUpdate(req.params.id, {
+            FirstName,
+            LastName,
+            Address,
+            Email,
+            Phone
+        });
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).send('Error updating contact: ');
+    }
 });
 
 //Delete Contact API
-router.delete('/delete/:id', async (req, res) => {
-    await Contact.findByIdAndDelete(req.params.id);
-    res.redirect('/');
+router.get('/delete/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Contact.findByIdAndDelete(req.params.id);
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error deleting contact:', error);
+        res.status(500).send('Error deleting contact' + error.message);
+    }
 });
 
 module.exports = router;

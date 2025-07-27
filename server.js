@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Contact = require('./models/contact'); 
+const methodOverride = require('method-override');
 
 const app = express();
 
@@ -20,6 +21,7 @@ mongoose.connect('mongodb+srv://DIVYA:divya@meradb.z2dszqk.mongodb.net/Contact_D
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
