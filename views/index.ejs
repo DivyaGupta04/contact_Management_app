@@ -68,7 +68,7 @@
           &#8942;
         </button>
         <a href="/edit/<%= contact._id %>" class="btn btn-sm btn-primary">Edit</a>
-        <form action="/delete/<%= contact._id %>?_method=DELETE" method="GET" onclick="return confirm('Click OK to delete this contact?')" style="display:inline;">
+        <form action="/delete/<%= contact._id %>?_method=DELETE" method="GET" onclick="return confirm('Click OK to delete this contact')" style="display:inline;">
           <button type="submit" class="btn btn-sm btn-outline-danger" >Delete</button>
         </form>
       </div>
