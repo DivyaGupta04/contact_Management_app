@@ -30,7 +30,7 @@
     </div>
     <div class="mb-3">
       <label class="form-label">Phone Number</label>
-      <input type="text" name="Phone" class="form-control" value="<%= contact.Phone %>" required>
+      <input type="text" name="Phone" class="form-control" pattern="[0-9]{10}" value="<%= contact.Phone %>" required>
     </div>
     <button type="submit" class="btn btn-success w-100">Update Contact</button>
   </form>
